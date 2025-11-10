@@ -1,8 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sistema_mecaniaca_inteligente/Telas/tela_inicial.dart';
-import 'package:sistema_mecaniaca_inteligente/Telas/tela_login.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyHomePage());
 }
 
@@ -20,7 +22,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mecanica Inteligente',
-      home: TelaLogin(),
+      home: TelaPrincipal(),
     );
   }
 }
+
+
+

@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class BarraInferior extends StatefulWidget {
+  const BarraInferior({super.key});
+
   @override
   State<BarraInferior> createState() => _BarraInfeiriorState();
 

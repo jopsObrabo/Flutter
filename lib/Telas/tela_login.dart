@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/campo_edicao.dart';
 
 class TelaLogin extends StatefulWidget {
   TelaLogin({super.key});
@@ -20,54 +21,52 @@ class _TelaLoginState extends State<TelaLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.all(30),
-            width: 300,
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Usuario",
-                hintStyle: TextStyle(fontSize: 16),
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/logo.png", fit: BoxFit.fill),
+            Container(
+              margin: EdgeInsets.all(30),
+              width: 300,
+              child: CampoEdicao("Usuário",icone: Icons.person,teclado: TextInputType.emailAddress,),
+            ),
+            SizedBox(
+                width: 300,
+                child: CampoEdicao("Senha",passaword: true,isSenha:selecionaBotao ,onPressedButton: onPressedButton,)
+              ),
+            SizedBox(height: 5),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                "Não Tem Conta? Cadastre-se!",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                ),
               ),
             ),
-          ),
-          Container(
-            width: 300,
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 1),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 180,
-                  child: TextFormField(
-                    obscureText: selecionaBotao,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Senha",
-                      hintStyle: TextStyle(fontSize: 16),
-                    ),
-                  ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey[300],
+                foregroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                IconButton(
-                  icon:  Icon(
-                    selecionaBotao
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                    color: Colors.black,
-                  ),
-                  onPressed: onPressedButton,
-                )
-              ],
+                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 12),
+                elevation: 0,
+              ),
+              child: Text(
+                "Entar",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

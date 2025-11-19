@@ -11,13 +11,13 @@ class CarroServicoService {
 
   Stream<List<CarroServico>> listarCarroServicos() {
     return _db.snapshots().map((snapshot) => snapshot.docs
-        .map((d) => CarroServico.fromFirestore(d))
+        .map((d) => CarroServico.fromMap(d.data(), d.id))
         .toList());
   }
 
   Future<CarroServico?> buscarPorId(String id) async {
     var doc = await _db.doc(id).get();
-    if (doc.exists) return CarroServico.fromFirestore(doc);
+    if (doc.exists) return CarroServico.fromMap(doc.data()!, doc.id);
     return null;
   }
 

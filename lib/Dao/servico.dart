@@ -11,10 +11,9 @@ class Servico {
     required this.valor,
   });
 
-  factory Servico.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+  factory Servico.fromMap(Map<String, dynamic> data, String id) {
     return Servico(
-      id: doc.id,
+      id: id,
       descricao: data['descricao'],
       valor: (data['valor'] ?? 0).toDouble(),
     );

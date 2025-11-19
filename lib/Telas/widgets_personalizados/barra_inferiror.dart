@@ -29,18 +29,14 @@ class _BarraInfeiriorState extends State<BarraInferior>{
         BottomNavigationBarItem(
           icon: Icon(Icons.home_outlined),
           activeIcon: Icon(Icons.home, color: Colors.red),
-          label: "início",
+          label: "Início",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.car_repair_outlined),
           activeIcon: Icon(Icons.car_repair, color: Colors.red),
-          label: "carros",
+          label: "Carros",
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          activeIcon: Icon(Icons.person, color: Colors.red),
-          label: "meu perfil",
-        ),
+
       ],
     );
   }

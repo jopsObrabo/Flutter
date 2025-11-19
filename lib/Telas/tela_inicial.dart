@@ -1,18 +1,35 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sistema_mecaniaca_inteligente/Telas/menu_lateral.dart';
 import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/barra_inferiror.dart';
 
-class TelaPrincipal extends  StatelessWidget  {
+import '../Dao/cliente.dart';
+import 'controle_interacao/controle_tela_principal.dart';
 
+class TelaPrincipal extends StatefulWidget   {
+  var usuarios;
+  TelaPrincipal(this.usuarios);
+
+  @override
+  _TelaPrincipalState createState() => _TelaPrincipalState();
+
+}
+class _TelaPrincipalState extends State<TelaPrincipal>{
+  late ControleTelaPrincipal _controle;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _controle = ControleTelaPrincipal(widget.usuarios);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-            child: Row(
+      appBar: AppBar(
+        title:  Column(
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
@@ -33,10 +50,13 @@ class TelaPrincipal extends  StatelessWidget  {
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+      body: Center(child: Text( widget.usuarios is Cliente ? "Cliente" : "Oficina",
+        style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),),
       bottomNavigationBar: BarraInferior(),
+      drawer:  MenuLateral(widget.usuarios),
     );
   }
 }

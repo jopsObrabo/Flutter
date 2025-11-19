@@ -15,14 +15,13 @@ class Oficina {
     required this.telefone,
   });
 
-  factory Oficina.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+  factory Oficina.fromMap(Map<String, dynamic> data, String id) {
     return Oficina(
-      id: doc.id,
-      nome: data['nome'],
-      email: data['email'],
-      endereco: data['endereco'],
-      telefone: data['telefone'],
+      id: id,
+      nome: data['nome'] ?? '',
+      email: data['email'] ?? '',
+      endereco: data['endereco'] ?? '',
+      telefone: data['telefone'] ?? '',
     );
   }
 

@@ -10,22 +10,24 @@ class CarroService {
   }
 
   Stream<List<Carro>> listarCarros() {
-    return _db.snapshots().map((snapshot) =>
-        snapshot.docs.map((d) => Carro.fromFirestore(d)).toList());
+    return _db.snapshots().map(
+          (snapshot) => snapshot.docs
+          .map((d) => Carro.fromMap(d.data(), d.id))
+          .toList(),
+    );
   }
 
   Future<Carro?> buscarPorId(String id) async {
     var doc = await _db.doc(id).get();
-    if (doc.exists) return Carro.fromFirestore(doc);
+    if (doc.exists) return Carro.fromMap(doc.data()!, doc.id);
     return null;
   }
 
   Future<Carro?> buscarPorPlaca(String placa) async {
-    var query =
-    await _db.where('Placa', isEqualTo: placa).limit(1).get();
+    var query = await _db.where('Placa', isEqualTo: placa).limit(1).get();
     if (query.docs.isNotEmpty) {
       var doc = query.docs.first;
-      return Carro.fromFirestore(doc);
+      return Carro.fromMap(doc.data(), doc.id);
     }
     return null;
   }

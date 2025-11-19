@@ -11,12 +11,12 @@ class OficinaService {
 
   Stream<List<Oficina>> listarOficinas() {
     return _db.snapshots().map((snapshot) =>
-        snapshot.docs.map((d) => Oficina.fromFirestore(d)).toList());
+        snapshot.docs.map((d) => Oficina.fromMap(d.data(), d.id)).toList());
   }
 
   Future<Oficina?> buscarPorId(String id) async {
     var doc = await _db.doc(id).get();
-    if (doc.exists) return Oficina.fromFirestore(doc);
+    if (doc.exists) return Oficina.fromMap(doc.data()!, doc.id);
     return null;
   }
 

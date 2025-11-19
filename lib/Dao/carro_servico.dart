@@ -17,10 +17,9 @@ class CarroServico {
     required this.data,
   });
 
-  factory CarroServico.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+  factory CarroServico.fromMap(Map<String, dynamic> data, String id) {
     return CarroServico(
-      id: doc.id,
+      id: id,
       idCarro: data['id_Carro'] ?? '',
       idCliente: data['id_Cliente'] ?? '',
       idOficina: data['Id_Oficina'] ?? '',

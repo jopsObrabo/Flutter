@@ -15,14 +15,13 @@ class Cliente {
     required this.cpf,
   });
 
-  factory Cliente.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+  factory Cliente.fromMap(Map<String, dynamic> data, String id) {
     return Cliente(
-      id: doc.id,
-      nome: data['nome'],
-      email: data['email'],
-      telefone: data['telefone'],
-      cpf: data['cpf'],
+      id: id,
+      nome: data['nome'] ?? '',
+      email: data['email'] ?? '',
+      telefone: data['telefone'] ?? '',
+      cpf: data['cpf'] ?? '',
     );
   }
 

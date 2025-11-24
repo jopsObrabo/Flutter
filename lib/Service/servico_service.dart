@@ -5,8 +5,9 @@ import '../Dao/servico.dart';
 class ServicoService {
   final _db = FirebaseFirestore.instance.collection('Servicos');
 
-  Future<void> addServico(Servico servico) async {
-    await _db.add(servico.toMap());
+  Future<String> addServico(Servico servico) async {
+    DocumentReference doc = await _db.add(servico.toMap());
+    return doc.id;
   }
 
   Stream<List<Servico>> listarServicos() {

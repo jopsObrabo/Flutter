@@ -70,7 +70,7 @@ class _TelaLoginState extends State<TelaLogin> {
               SizedBox(height: 5),
               TextButton(
                 onPressed: () {
-                  push(context, TelaCadastro(_controle));
+                  push(context, TelaCadastro());
                 },
                 child: Text(
                   "Não Tem Conta? Cadastre-se!",

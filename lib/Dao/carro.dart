@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Carro {
   String id;
   String placa;
@@ -10,6 +8,8 @@ class Carro {
   String quilometragem;
   String idCliente;
   String idOficina;
+  String carroceria;
+  String? banner;
 
   Carro({
     required this.id,
@@ -19,8 +19,10 @@ class Carro {
     required this.ano,
     required this.combustivel,
     required this.quilometragem,
+    required this.carroceria,
     required this.idCliente,
     required this.idOficina,
+    this.banner
   });
 
   factory Carro.fromMap(Map<String, dynamic> data, String id) {
@@ -32,8 +34,10 @@ class Carro {
       ano: data['ano'] ?? '',
       combustivel: data['combustivel'] ?? '',
       quilometragem: data['quilometragem'] ?? '',
+      carroceria: data['carroceria'] ?? '',
       idCliente: data['id_Cliente'] ?? '',
       idOficina: data['id_Oficina'] ?? '',
+      banner: data['banner'] ?? '',
     );
   }
 
@@ -44,7 +48,9 @@ class Carro {
     'ano': ano,
     'combustivel': combustivel,
     'quilometragem': quilometragem,
+    'carroceria': carroceria,
     'id_Cliente': idCliente,
     'id_Oficina': idOficina,
+    'banner' : banner,
   };
 }

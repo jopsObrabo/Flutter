@@ -6,6 +6,8 @@ class Oficina {
   final String email;
   final String endereco;
   final String telefone;
+  String? foto;
+  String? banner;
 
   Oficina({
     required this.id,
@@ -13,6 +15,9 @@ class Oficina {
     required this.email,
     required this.endereco,
     required this.telefone,
+    this.foto,
+    this.banner
+
   });
 
   factory Oficina.fromMap(Map<String, dynamic> data, String id) {
@@ -22,6 +27,8 @@ class Oficina {
       email: data['email'] ?? '',
       endereco: data['endereco'] ?? '',
       telefone: data['telefone'] ?? '',
+      foto: data['foto'] ?? '',
+      banner: data['banner'] ?? '',
     );
   }
 
@@ -30,5 +37,7 @@ class Oficina {
     'email': email,
     'endereco': endereco,
     'telefone': telefone,
+    'foto': foto,
+    'banner' : banner,
   };
 }

@@ -5,16 +5,15 @@ import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/widge
 import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/widget_oficina.dart';
 
 class TelaCadastro extends StatefulWidget {
-  ControleTelaLogin _controle;
-  TelaCadastro(this._controle, {super.key});
+
+  TelaCadastro( {super.key});
 
   @override
-  _TelaCadastroState createState() => _TelaCadastroState(_controle);
+  _TelaCadastroState createState() => _TelaCadastroState();
 }
 
 class _TelaCadastroState extends State<TelaCadastro> {
-  ControleTelaLogin _controle;
-  _TelaCadastroState(this._controle);
+  ControleTelaLogin _controle = ControleTelaLogin();
 
   bool clienteSelecionado = true;
 
@@ -30,7 +29,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -57,39 +55,40 @@ class _TelaCadastroState extends State<TelaCadastro> {
 
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-        child: clienteSelecionado ? WidgetCliente(selecionaBotao,onPressedButton,_controle) : WidgetOficina(selecionaBotao,onPressedButton,_controle),
+        child: clienteSelecionado
+            ? WidgetCliente(isSenha: selecionaBotao, onPressMostrarSenha: onPressedButton, controle: _controle)
+            : WidgetOficina(isSenha: selecionaBotao, onPressMostrarSenha: onPressedButton, controle: _controle),
       ),
 
       bottomNavigationBar: BottomAppBar(
-        child:  Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  if(clienteSelecionado == true){
-                    _controle.cadastrar(context,true);
-                  }else{
-                    _controle.cadastrar(context,false);
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[300],
-                  foregroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 12),
-                  elevation: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                if (clienteSelecionado == true) {
+                  _controle.cadastrar(context, true);
+                } else {
+                  _controle.cadastrar(context, false);
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.grey[300],
+                foregroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                child: Text(
-                  "Cadastre-se",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 12),
+                elevation: 0,
               ),
-            ],
-          ),
+              child: Text(
+                "Cadastre-se",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
+      ),
     );
   }
-
 }

@@ -32,6 +32,22 @@ class CarroService {
     return null;
   }
 
+  Future<List<Carro>> buscarPorIdCliente(String idCliente) async {
+    var query = await _db.where('id_Cliente', isEqualTo: idCliente).get();
+
+    return query.docs
+        .map((doc) => Carro.fromMap(doc.data(), doc.id))
+        .toList();
+  }
+
+  Future<List<Carro>> buscarPorIdOficina(String idCliente) async {
+    var query = await _db.where('id_Oficina', isEqualTo: idCliente).get();
+
+    return query.docs
+        .map((doc) => Carro.fromMap(doc.data(), doc.id))
+        .toList();
+  }
+
   Future<void> atualizarCarro(String id, Carro carro) async {
     await _db.doc(id).update(carro.toMap());
   }

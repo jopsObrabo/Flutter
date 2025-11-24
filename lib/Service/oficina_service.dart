@@ -14,7 +14,16 @@ class OficinaService {
         snapshot.docs.map((d) => Oficina.fromMap(d.data(), d.id)).toList());
   }
 
-  Future<Oficina?> buscarPorId(String id) async {
+  Future<Oficina?> buscarPorNome(String nome) async {
+    var query = await _db.where('nome', isEqualTo: nome).limit(1).get();
+    if (query.docs.isNotEmpty) {
+      var doc = query.docs.first;
+      return Oficina.fromMap(doc.data(), doc.id);
+    }
+    return null;
+  }
+
+  Future<Oficina?> getById(String id) async {
     var doc = await _db.doc(id).get();
     if (doc.exists) return Oficina.fromMap(doc.data()!, doc.id);
     return null;

@@ -20,10 +20,10 @@ class CarroServico {
   factory CarroServico.fromMap(Map<String, dynamic> data, String id) {
     return CarroServico(
       id: id,
-      idCarro: data['id_Carro'] ?? '',
-      idCliente: data['id_Cliente'] ?? '',
-      idOficina: data['Id_Oficina'] ?? '',
-      idServico: data['id_Servicos'] ?? '',
+      idCarro: data['id_Carro'],
+      idCliente: data['id_Cliente'] ,
+      idOficina: data['Id_Oficina'] ,
+      idServico: data['id_Servicos'] ,
       data: data['data'] ?? '',
     );
   }

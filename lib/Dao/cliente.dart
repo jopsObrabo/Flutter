@@ -6,6 +6,7 @@ class Cliente {
   final String email;
   final String telefone;
   final String cpf;
+  final String? foto;
 
   Cliente({
     required this.id,
@@ -13,6 +14,7 @@ class Cliente {
     required this.email,
     required this.telefone,
     required this.cpf,
+    this.foto,
   });
 
   factory Cliente.fromMap(Map<String, dynamic> data, String id) {
@@ -22,6 +24,7 @@ class Cliente {
       email: data['email'] ?? '',
       telefone: data['telefone'] ?? '',
       cpf: data['cpf'] ?? '',
+      foto: data['foto'] ?? '',
     );
   }
 
@@ -30,5 +33,6 @@ class Cliente {
     'email': email,
     'telefone': telefone,
     'cpf': cpf,
+    'foto': foto,
   };
 }

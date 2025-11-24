@@ -12,9 +12,11 @@ class CampoEdicao extends StatelessWidget {
   IconData? icone;
   bool isSenha;
   VoidCallback? onPressedButton;
+  bool enabled;
 
   CampoEdicao(
     this.texto_label, {
+    this.enabled = true,
     this.texto_dica = "",
     this.passaword = false,
     this.controlador = null,
@@ -39,6 +41,7 @@ class CampoEdicao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       validator: validador,
       obscureText: isSenha,
       controller: controlador,
@@ -58,10 +61,12 @@ class CampoEdicao extends StatelessWidget {
         hintStyle: TextStyle(fontSize: 15, color: Colors.grey),
         suffixIcon: passaword
             ? IconButton(
-                icon: Icon(
-                  isSenha ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.black,
-                ),
+                icon: icone != null
+                    ? Icon(icone)
+                    : Icon(
+                        isSenha ? Icons.visibility_off : Icons.visibility,
+                        color: Colors.black,
+                      ),
                 onPressed: onPressedButton,
               )
             : Icon(icone, color: Colors.black),

@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Servico {
   final String id;
   final String descricao;
-  final double? valor;
-  final bool requisicao;
+  double? valor;
+  bool requisicao;
 
   Servico({
     required this.id,

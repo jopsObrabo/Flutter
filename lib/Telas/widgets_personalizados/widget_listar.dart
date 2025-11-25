@@ -1,6 +1,7 @@
   import 'package:flutter/cupertino.dart';
   import 'package:flutter/material.dart';
 import 'package:sistema_mecaniaca_inteligente/Dao/oficina.dart';
+import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/tela_detalhes_clientes.dart';
 import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/tela_detalhes_oficina.dart';
 import 'package:sistema_mecaniaca_inteligente/utils/widgets/nav.dart';
 
@@ -15,7 +16,7 @@ import 'package:sistema_mecaniaca_inteligente/utils/widgets/nav.dart';
           if(dados is Oficina){
               push(context, TelaDetalhesOficna(dados));
           }else{
-
+              push(context, TelaDetalhesClientes(dados));
           }
         },
         child: Container(

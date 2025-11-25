@@ -5,6 +5,8 @@ import 'package:sistema_mecaniaca_inteligente/Telas/controle_interacao/controle_
 import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/campo_edicao.dart';
 import 'package:sistema_mecaniaca_inteligente/Telas/widgets_personalizados/combo_box.dart';
 
+import 'menssagen_alerta.dart';
+
 class TelaCadastroServico extends StatefulWidget {
   Oficina oficina;
   TelaCadastroServico(this.oficina);
@@ -47,7 +49,17 @@ class _TelaCadastroServicoState extends State<TelaCadastroServico> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  _controle.inserirServico(carroSelecionado!,widget.oficina);
+                  if(carroSelecionado!.idOficina.isNotEmpty && carroSelecionado!.idOficina != widget.oficina.id){
+                    showDialog(
+                      context: context,
+                      builder: (_) => const MensagemAlerta(
+                        "Este carro já está sendo atendido por outra oficina.",
+                      ),
+                    );
+                  }else{
+                    _controle.inserirServico(carroSelecionado!,widget.oficina);
+                  }
+
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

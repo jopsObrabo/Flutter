@@ -25,6 +25,21 @@ class CarroServicoService {
     await _db.doc(id).update(cs.toMap());
   }
 
+  Future<List<CarroServico>> buscarPorCarro(String idCarro) async {
+    var query = await _db.where('id_Carro', isEqualTo: idCarro).get();
+    return query.docs
+        .map((doc) => CarroServico.fromMap(doc.data(), doc.id))
+        .toList();
+  }
+
+  Future<List<CarroServico>> buscarPorOficina(String idOficina) async {
+    var query = await _db.where('Id_Oficina', isEqualTo: idOficina).get();
+    return query.docs
+        .map((doc) => CarroServico.fromMap(doc.data(), doc.id))
+        .toList();
+  }
+
+
   Future<void> excluirCarroServico(String id) async {
     await _db.doc(id).delete();
   }

@@ -74,37 +74,23 @@ class TelaDetalhesOficna extends StatelessWidget {
                       oficina.email,
                       style: TextStyle(fontSize: 18, color: Colors.white70),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              color: Colors.grey[100],
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 2),
-                    ),
-                    padding: EdgeInsets.all(12),
-                    child: Column(
+                    SizedBox(height: 5),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Endereço: ${oficina.endereco}",
-                          style: TextStyle(fontSize: 16, color: Colors.black87),
+                          style: TextStyle(fontSize: 16, color: Colors.white70),
                         ),
-                        SizedBox(height: 6),
+                        SizedBox(height: 5),
                         Text(
                           "Telefone: ${oficina.telefone}",
-                          style: TextStyle(fontSize: 16, color: Colors.black87),
+                          style: TextStyle(fontSize: 16, color: Colors.white70),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

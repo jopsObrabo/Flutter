@@ -1,16 +1,23 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sistema_mecaniaca_inteligente/Dao/carro.dart';
+import 'package:sistema_mecaniaca_inteligente/Dao/carro_servico.dart';
 import 'package:sistema_mecaniaca_inteligente/Dao/cliente.dart';
+import 'package:sistema_mecaniaca_inteligente/Dao/servico.dart';
 import 'package:sistema_mecaniaca_inteligente/Service/carro_service.dart';
+import 'package:sistema_mecaniaca_inteligente/Service/carro_servico_service.dart';
 import 'package:sistema_mecaniaca_inteligente/Service/cliente_service.dart';
+import 'package:sistema_mecaniaca_inteligente/Service/servico_service.dart';
 
 
 class ControleTelaCarro{
   CarroService serviceCarro = CarroService();
   final user = FirebaseAuth.instance.currentUser!;
   ClienteService serviceCliente = ClienteService();
+  CarroServicoService serviceCarroServico = CarroServicoService();
+  ServicoService serviceServico = ServicoService();
   Carro? carro;
 
   final controlador_banner = TextEditingController();
@@ -60,6 +67,43 @@ class ControleTelaCarro{
   Future<String> pegarNomeCliente(String id) async{
     Cliente? cliente = await serviceCliente.getById(id);
     return cliente?.nome ?? "Nome não encontrado";
+  }
+
+  Future<List<Servico>>  pesquisarServico(String idCarro) async{
+    List<Servico> listaServico = [];
+    List<CarroServico> carroServico = await serviceCarroServico.buscarPorCarro(idCarro);
+    if(carroServico.isNotEmpty){
+      for(int i = 0; i < carroServico.length; i++){
+        Servico? servico = await serviceServico.buscarPorId(carroServico[i].idServico);
+        listaServico.add(servico!);
+      }
+    }
+    return listaServico;
+  }
+
+  Future<String> getTipoUsuario() async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+
+    final cliente = await FirebaseFirestore.instance
+        .collection("Cliente")
+        .doc(uid)
+        .get();
+
+    if (cliente.exists) return "cliente";
+
+    final oficina = await FirebaseFirestore.instance
+        .collection("Oficina")
+        .doc(uid)
+        .get();
+
+    if (oficina.exists) return "oficina";
+
+    return "desconhecido";
+  }
+
+  Future<void> apagarCarroOficina(Carro carro) async{
+    carro.idOficina = "";
+    await serviceCarro.atualizarCarro(carro.id, carro);
   }
 
 }

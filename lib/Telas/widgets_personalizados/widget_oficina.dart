@@ -110,7 +110,7 @@ class WidgetOficina extends StatelessWidget {
             controlador: controle.controlador_login,
             teclado: TextInputType.emailAddress,
             icone: Icons.email,
-            enabled: !modoEdicao,  // <-- 🔥 impede editar email
+            enabled: !modoEdicao,
           ),
           const SizedBox(height: 15),
 

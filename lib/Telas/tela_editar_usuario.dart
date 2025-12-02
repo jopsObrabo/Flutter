@@ -52,6 +52,9 @@ class _TelaEditarUsuarioState extends State<TelaEditarUsuario> {
             ElevatedButton(
               onPressed: () {
                 _controle.atualizarUsuario(widget.tipo);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Operação Realizada!")),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey[300],

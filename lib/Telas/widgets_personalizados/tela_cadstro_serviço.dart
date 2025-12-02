@@ -58,6 +58,9 @@ class _TelaCadastroServicoState extends State<TelaCadastroServico> {
                     );
                   }else{
                     _controle.inserirServico(carroSelecionado!,widget.oficina);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Operação Realizada!")),
+                    );
                   }
 
                 },
